@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./RecipeDetails.css";
+//for AOS animation
 import AOS from "aos";
 import "aos/dist/aos.css"; 
-const burgerImage = "/images/burger.png";
+const burgerImage = "/images/burger.png"; //import burger image
+//import icons
 import { FaSearch } from "react-icons/fa";
 import { FaStar,} from "react-icons/fa"; 
 
 
-
+//recipe details function
 const RecipeDetails = () => {
   const ingredients = [
     { name: "Chicken", quantity: "1 KG" },
@@ -27,12 +29,21 @@ const RecipeDetails = () => {
     { name: "Salt", quantity: "For taste" },
   ];
 
+  //for accordion
   const [openStep, setOpenStep] = useState(null);
 
   const toggleStep = (index) => {
     setOpenStep(openStep === index ? null : index);
   };
 
+  //for speach instruction
+  const speakInstruction = (instruction) => {
+    const utterance = new SpeechSynthesisUtterance(instruction);
+    speechSynthesis.speak(utterance);
+  };
+
+
+  //directions function
   const directions = [
     {
       step: 1,
@@ -44,6 +55,7 @@ const RecipeDetails = () => {
     { step: 4, instruction: "Cook the biryani over low heat for 40 minutes." },
   ];
 
+  //for comments
   const [comments, setComments] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -56,16 +68,16 @@ const RecipeDetails = () => {
     fetchComments();
   }, []);
 
-
+  //for aos animation
   useEffect(() => {
     AOS.init({
-      duration: 700, 
-      easing: "ease-in-out", 
-      once: false, 
+      duration: 700,
+      easing: "ease-in-out",
+      once: false,
     });
   }, []);
-  
 
+  //fetch comments
   const fetchComments = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/comments");
@@ -75,15 +87,17 @@ const RecipeDetails = () => {
     }
   };
 
+  //for comments input
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  // Handle star click to set rating
+  // for comments star ratings
   const handleStarClick = (rating) => {
     setFormData({ ...formData, rating });
   };
 
+  //for comments submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -98,8 +112,10 @@ const RecipeDetails = () => {
     }
   };
 
+  //html
   return (
     <section className="recipe-details">
+      {/* Header */}
       <div className="recipe-header">
         <div className="recipe_details-header">
           <h1 className="recipe_logo">
@@ -130,6 +146,7 @@ const RecipeDetails = () => {
         <div className="recipe-infos">
           <h2
             data-aos="fade-right"
+            className="recipe-infos-header"
             style={{ color: "orange", fontSize: "4rem", fontWeight: "bolder" }}
           >
             Chicken Biryani
@@ -137,15 +154,18 @@ const RecipeDetails = () => {
           <div data-aos="fade-up" className="recipe-icons">
             <p style={{ color: "white", fontWeight: "bolder" }}>
               {" "}
-              <span> &#x1F552;</span> 1h 12m
+              <span> &#x1F552;</span>{" "}
+              <span style={{ color: "white" }}>1h 12m</span>
             </p>
             <p style={{ color: "white", fontWeight: "bolder" }}>
               {" "}
-              <span>👨‍🍳</span> Bharath
+              <span>👨‍🍳</span>
+              <span style={{ color: "white" }}> Bharath</span>
             </p>
             <p style={{ color: "white", fontWeight: "bolder" }}>
               {" "}
-              <span> &#127831;</span> Non-veg
+              <span> &#127831;</span>{" "}
+              <span style={{ color: "white" }}>Non-veg</span>
             </p>
             <p
               style={{
@@ -164,6 +184,7 @@ const RecipeDetails = () => {
         </div>
       </div>
       <div className="recipe-content">
+        {/* Ingredients list */}
         <div
           data-aos="fade-right"
           data-aos-offset="300"
@@ -184,6 +205,7 @@ const RecipeDetails = () => {
           </div>
         </div>
         <div data-aos="fade-left" data-aos-offset="300" className="directions">
+          {/* Directions */}
           <h3>Directions</h3>
           {directions.map((step, index) => (
             <div key={index} className="direction-step">
@@ -200,10 +222,23 @@ const RecipeDetails = () => {
                   boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
                 }}
               >
-                <span style={{ color: "black" }}>{`Step ${step.step}`}</span>{" "}
-                <span style={{ color: "black" }}>
-                  {openStep === index ? "▲" : "▼"}
-                </span>
+                <span style={{ color: "black" }}>{`Step ${step.step}`}</span>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ color: "black" }}>
+                    {openStep === index ? "▲" : "▼"}
+                  </span>
+                  <button
+                    onClick={() => speakInstruction(step.instruction)}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    🔊
+                  </button>
+                </div>
               </h4>
               {openStep === index && (
                 <p
@@ -220,6 +255,7 @@ const RecipeDetails = () => {
         </div>
       </div>
       <section className="comments">
+        {/* Comments Form */}
         <h3 style={{ color: "orange", fontFamily: "cursive" }}>
           Cooked this? Comment and rate the recipe
         </h3>
@@ -274,6 +310,7 @@ const RecipeDetails = () => {
             </button>
           </form>
           <div data-aos="fade-left" className="comment-list">
+              {/* Comments */}
             <h3
               style={{
                 marginTop: "0px",

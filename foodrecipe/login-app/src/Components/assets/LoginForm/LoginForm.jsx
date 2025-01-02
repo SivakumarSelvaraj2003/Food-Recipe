@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import axios from "axios";
-import { useNavigate } from "react-router-dom"; 
+import axios from "axios"; 
+import { useNavigate } from "react-router-dom"; //for navigation
 import "./LoginForm.css"
+//import AOS animation library
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import the CSS
-import { useEffect } from "react"; // Import useEffect for initialization
+import "aos/dist/aos.css"; 
+import { useEffect } from "react"; 
 
+
+//import burger image
 const burgerImage = "/images/burger.png";
 
-// Reusable Input Component
+// input box
 const InputField = ({ label, type, placeholder, value, onChange }) => (
   <div style={{ marginBottom: "10px" }}>
     <label
@@ -40,7 +43,7 @@ const InputField = ({ label, type, placeholder, value, onChange }) => (
   </div>
 );
 
-// Reusable Button Component
+// button
 const Button = ({ text, onClick }) => (
   <button
     onClick={onClick}
@@ -49,16 +52,18 @@ const Button = ({ text, onClick }) => (
     {text}
   </button>
 );
+
 //login component
-// Login Component
 const Login = ({ onSwitchToRegister }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
 
-
+   //navigation function
   const navigate = useNavigate(); 
+
+  //for AOS animation
 useEffect(() => {
   AOS.init({
     duration: 700, 
@@ -68,18 +73,18 @@ useEffect(() => {
 }, []);
 
 
-
+  //login error
   const handleLogin = async () => {
-    setError(""); // Clear general error
-    setEmailError(""); // Clear email-specific error
+    setError(""); 
+    setEmailError(""); 
 
-    // Email validation
+    //for  email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(username)) {
       setEmailError("Please enter a valid email address.");
       return;
     }
-
+ //http requests from axios
     try {
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
@@ -88,15 +93,17 @@ useEffect(() => {
           password,
         }
       );
-      // Save the token for authenticated requests
+
+      // authentication token save
       localStorage.setItem("token", response.data.token);
-      alert("Login Successful!");
-      navigate("/recipe"); 
+      alert(" 🍽️  Welcome to Recipe Explorer! Let’s get cooking!");
+      navigate("/recipe"); // recipe navigation
     } catch (error) {
       setError(error.response?.data?.error || "Login failed!");
     }
   };
 
+  //html function
   return (
     <div
       style={{
@@ -112,7 +119,7 @@ useEffect(() => {
         borderRadius: "10px",
         boxShadow: "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px",                
       }}
-      data-aos="flip-right"
+      data-aos="flip-right" //for aos animation
     >
       <div style={{ color: "orange" }}>
         <img
@@ -125,7 +132,7 @@ useEffect(() => {
             height: "50px",
             marginTop: "10px",
             marginLeft: "80px",
-          }} // Adjust size as needed
+          }} 
         />
         <h2 data-aos="fade-left" data-aos-duration="1000">
           Food Recipe
@@ -141,13 +148,14 @@ useEffect(() => {
         value={username}
         onChange={(value) => {
           setUsername(value);
-          setEmailError(""); // Clear email error on input change
+          setEmailError(""); 
         }}
         data-aos="fade-left"
         data-aos-duration="1000"
       />
+   
       {emailError && (
-        <div className="error-message" style={{ color: "red" }}>
+        <div className="error-message" style={{ color: "red" }}> 
           {emailError}
         </div>
       )}
@@ -177,7 +185,7 @@ useEffect(() => {
   );
 };
 
-// Registration Form Component
+// registration form
 const RegistrationForm = ({ onSwitchToLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -185,35 +193,36 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
 
+  //registration errors
   const handleRegister = async () => {
-    setError(""); // Clear general error
-    setEmailError(""); // Clear email-specific error
+    setError("");
+    setEmailError("");
 
-    // Email validation
+    // for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setEmailError("Please enter a valid email address.");
       return;
     }
 
-    // Password matching validation
+    // password match validation
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
-
+    //http requests from axios
     try {
       await axios.post("http://localhost:5000/api/auth/register", {
         username: email, // Assuming email acts as the username
         password,
       });
-      alert("Registration Successful! Please log in.");
-      onSwitchToLogin(); // Switch to login form
+      alert("🎉 Registration Successful! Log in to start cooking!");
+      onSwitchToLogin();
     } catch (error) {
       setError(error.response?.data?.error || "Registration failed!");
     }
   };
-
+//html for registration form
   return (
     <div
       style={{
@@ -243,7 +252,7 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
             height: "50px",
             marginTop: "10px",
             marginLeft: "80px",
-          }} // Adjust size as needed
+          }} 
         />
         <h2 data-aos="fade-right" data-aos-duration="1000">
           Food Recipe
@@ -259,7 +268,7 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
         value={email}
         onChange={(value) => {
           setEmail(value);
-          setEmailError(""); // Clear email error on input change
+          setEmailError(""); 
         }}
       />
       {emailError && (
@@ -303,7 +312,7 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
 
 
 
-// Main Component
+// main component
 const LoginForm = () => {
   const [isLogin, setIsLogin] = useState(true);
 

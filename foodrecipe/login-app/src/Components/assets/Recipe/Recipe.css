@@ -7,7 +7,11 @@
   box-sizing: border-box;
 } */
  
-/* General Styles */
+
+/* ============================= */
+/* -------- General CSS -------- */
+/* ============================= */
+
  body {
   width: 100%;
   font-family: Arial, sans-serif;
@@ -31,7 +35,9 @@
   padding: 0rem 5rem 0rem 5rem; 
 }
 
-/* Header Styles */
+/* ============================= */
+/* -------- Header CSS -------- */
+/* ============================= */
 .header {
   padding: .7rem;
   display: flex;
@@ -83,7 +89,9 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
-/* Recipe of the Day Section */
+/* ============================= */
+/* -------- Recipe of the day CSS -------- */
+/* ============================= */
 .recipe-of-the-day {
     box-sizing: border-box; 
  background-image: url(../../../../public/images/vegetable.png);
@@ -152,7 +160,169 @@ background-position: right top;
   color: orange;
 }
 
-/* Popular Recipes Section */
+/* ============================= */
+/* -------- Recipe of the day Media query -------- */
+/* -------- Media query for medium devices -------- */
+/* ============================= */
+@media (max-width: 992px) {
+
+.header{
+  padding: 0rem 5rem 0rem 5rem;
+}
+
+
+  .logo {
+    font-size: 1.3rem;
+    gap: 0.4rem;
+  }
+
+  .search-bar {
+    max-width: 300px;
+    margin-right: 10px;
+  }
+
+  .recipe-of-the-day {
+    background-size: cover;
+    background-position: center top;
+    margin-top: 15px;
+    width: 80%;
+  }
+
+  .highlight {
+    width: 40%;
+    padding: 1.5rem;
+    box-shadow: 10px 1px 15px #141414;
+  }
+
+  .highlight-text h3 {
+    font-size: 2rem;
+  }
+
+ 
+  .highlight-image {
+    width: 150px;
+  }
+
+  .btn {
+    font-size: 16px;
+    margin-top: 30px;
+    padding: 0.6rem 1rem;
+  }
+}
+
+
+/* ============================= */
+/* -------- Media query tablet -------- */
+/* ============================= */
+
+ @media (max-width: 768px) {
+
+   .container {
+    padding: 0 1rem;
+    min-width: auto;
+  }
+
+  .header {
+    flex-direction: column;
+   align-items: center;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    gap: 0.3rem;
+  }
+
+  .search-bar {
+    width: 50%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .recipe-of-the-day {
+    background-size: 90%;
+    background-position: center top;
+    margin-top: 20px;
+  }
+
+  .highlight {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    width: 100%;
+    box-shadow: none;
+   
+  }
+
+  .highlight-text {
+    width: 100%;
+  }
+
+  .highlight-text h3 {
+    font-size: 2.5rem;
+    width: auto;
+  }
+
+  .highlight-text p {
+    width: auto;
+  }
+
+  .highlight-image {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .btn {
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 0.5rem 1rem;
+  }
+} 
+
+/* ============================= */
+/* -------- Media query for mobile devices -------- */
+/* ============================= */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    box-shadow: none;
+  }
+    .search-bar input{
+   
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  .highlight {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .highlight-text h3 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 0.5rem;
+  }
+}
+
+/* ============================= */
+/* -------- Popular recipes CSS -------- */
+/* ============================= */
+
 .popular-recipes {
   margin-top: 2rem;
     box-sizing: border-box; 
@@ -171,7 +341,6 @@ background-position: right top;
   flex-direction: row;
   gap: 2rem;
   min-width: 100%; 
-  
 }
 
 .recipe-card {
@@ -241,26 +410,72 @@ background-position: right top;
   font-size: 2rem;
   font-family: cursive;
 }
-/* Responsive Design */
- @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+
+
+/* ============================= */
+/* -------- Popular recipes Media query -------- */
+/* -------- Media query for medium devices -------- */
+/* ============================= */
+@media (max-width: 992px) {
+  .popular-recipes {
+    padding: 0 3rem;
   }
 
-  .search-bar {
-    width: 100%;
-    margin-top: 1rem;
+  .recipe-list {
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
 
-  .highlight {
-    flex-direction: column;
-    text-align: center;
+  .recipe-card {
+    width: calc(33.33% - 1rem); 
+    height: 450px;
   }
 
-  .highlight-image {
-    margin-top: 1rem;
-    width: 150px;
+  .recipe-info h3 {
+    font-size: 1rem;
+  }
+
+  .recipe-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for tablets devices -------- */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .popular-recipes {
+    padding: 0 2rem;
+  }
+
+  .recipe-list {
+    flex-wrap: wrap;
+    gap: 1rem;
+  
+  }
+
+  .recipe-card {
+    width: calc(50% - 1rem); 
+    height: 400px;
+      margin-top: 50px;
+  }
+
+  .recipe-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .recipe-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for mobile devices -------- */
+/* ============================= */
+@media (max-width: 480px) {
+  .popular-recipes {
+    padding: 0 1rem;
   }
 
   .recipe-list {
@@ -269,6 +484,24 @@ background-position: right top;
   }
 
   .recipe-card {
-    width: 100%;
+    width: 100%; 
+    height: auto;
   }
-} 
+
+  .recipe-info h3 {
+    font-size: 0.8rem;
+  }
+
+  .recipe-title {
+    font-size: 1.2rem;
+  }
+
+  .recipe-info p {
+    font-size: 0.8rem;
+  }
+
+  .description-p {
+    font-size: 0.9rem;
+  }
+}
+

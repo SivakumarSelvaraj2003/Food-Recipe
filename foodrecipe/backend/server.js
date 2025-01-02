@@ -1,36 +1,38 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const recipeRoutes = require("./routes/recipes");
-const bodyParser = require("body-parser");
- const Recipe = require("./models/Recipe");    
-
+const express = require("express");  //import express
+const mongoose = require("mongoose"); //import mongoose
+const cors = require("cors"); //import cors
+const dotenv = require("dotenv"); //import .env
+const recipeRoutes = require("./routes/recipes"); //import recipe routes
+const bodyParser = require("body-parser"); //import body parsere
+ const Recipe = require("./models/Recipe"); //import recipe from models   
+ 
+//for .env 
 dotenv.config();
 
+//calling functions
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 const path = require("path");
 
+//file system calling function
 const fs = require("fs");
 
-// Define the images folder path
+//taking images for search enquiry
 const imagesPath = path.join(__dirname, "../login-app/public/images");
 console.log(__dirname, imagesPath);
 console.log(imagesPath);
-// Check if the images folder exists
 if (fs.existsSync(imagesPath)) {
-  // Serve static files from the images folder if it exists
+
   app.use("/images", express.static(imagesPath));
   console.log("Serving static files from 'images' folder...");
 } else {
-  // Throw an error if the images folder is not found
+
   console.error(
     "Error: 'images' folder not found. Please check the folder path."
   );
-  process.exit(1); // Stop the server
+  process.exit(1); 
 }
 
 /* const token = localStorage.getItem("token");
@@ -38,6 +40,8 @@ if (!token) {
   // Redirect to login
 }  */
 
+
+  //adding recipes in database
  const testRecipes = [
   /* {
     title: "Paneer Butter Masala",
@@ -85,7 +89,7 @@ Recipe.insertMany(testRecipes)
 
 
 
-  // Comment Schema
+  // schema for comments
 const commentSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -95,7 +99,7 @@ const commentSchema = new mongoose.Schema({
 
 const Comment = mongoose.model("Comment", commentSchema);
 
-// Routes
+// routes
 app.post("/api/comments", async (req, res) => {
   try {
     const { name, email, comment, rating } = req.body;
@@ -116,7 +120,7 @@ app.get("/api/comments", async (req, res) => {
   }
 });
 
-// MongoDB Connection
+// maongodb connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -125,12 +129,12 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((error) => console.log("MongoDB Connection Error:", error));
 
-// Use the recipe routes
+// recipe routes
 app.use("/api/recipes", recipeRoutes);
-// Routes
+// auth routes
 app.use("/api/auth", require("./routes/auth"));
 
-// Start Server
+// start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

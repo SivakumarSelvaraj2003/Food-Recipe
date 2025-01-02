@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Playwrite+AU+VIC+Guides&family=Rubik:ital,wght@0,300..900;1,300..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap'); */
+
 
 
 #root {
@@ -8,7 +8,9 @@
 }
 
 
-/* General Reset */
+/* ============================= */
+/* -------- General CSS -------- */
+/* ============================= */
   .login-page {
   margin: 0;
   padding: 0;
@@ -40,10 +42,12 @@ h5 {
   color: orange;
 }
 
-/* Form Container */
 
 
-/* Input Fields */
+/* ============================= */
+/* -------- Login and Registration Input CSS -------- */
+/* ============================= */
+
 .input {
   width: 100%;
   margin-bottom: 15px;
@@ -53,14 +57,14 @@ h5 {
   font-size: 14px;
 }
 
-/* Input Field Focus */
+
 .input:focus {
   outline: none;
   border-color: orange;
   box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
 }
 
-/* Button */
+
 button {
   width: 90%;
   padding: 12px;
@@ -78,7 +82,7 @@ button:hover {
   background-color: darkorange;
 }
 
-/* Link */
+
 span {
   color: orange;
   cursor: pointer;
@@ -90,18 +94,10 @@ span:hover {
   color: darkorange;
 }
 
-/* Error Message */
 .error {
   color: red;
   font-size: 12px;
   margin-bottom: 15px;
 }
 
-/* Alignment for Page */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
+

@@ -1,11 +1,15 @@
+//import express
 const express = require("express");
+//import jwt
 const jwt = require("jsonwebtoken");
+//import  bcrypt
 const bcrypt = require("bcryptjs");
+//import user from model
 const User = require("../models/User");
-
+//create new router
 const router = express.Router();
 
-// Register Route
+// register route
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
@@ -18,7 +22,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login Route
+// login route
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 

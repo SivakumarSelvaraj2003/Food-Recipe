@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Recipe.css";
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; 
+import { FaSearch } from "react-icons/fa";  //for icon
+import { useNavigate } from "react-router-dom"; //for navigation
+//for AOS animation library
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import the CSS
 
 
-// Import images (Ensure paths are correct)
+// import images
 const paneerImage = "/images/paneer2.jpeg";
 const carrotImage = "/images/carrot1.jpeg";
 const chickenImage = "/images/chicken.jpeg";
@@ -17,7 +18,7 @@ const burgerImage = "/images/burger.png";
 
 
 
-// Define the initial recipes array (if you want a fallback before API call)
+// recipe details
 const initialRecipes = [
   {
     title: "Paneer Butter Masala",
@@ -61,11 +62,14 @@ const initialRecipes = [
   },
 ];
 
+//for search enquiry
 function App() {
-  const [recipes, setRecipes] = useState(initialRecipes); // Initial state with fallback data
+  const [recipes, setRecipes] = useState(initialRecipes); 
   const [searchQuery, setSearchQuery] = useState("");
+  //for navigation
   const navigate = useNavigate(); 
 
+  //for aos animation
   useEffect(() => {
     AOS.init({
       duration: 700, 
@@ -75,10 +79,10 @@ function App() {
   }, []);
 
 
-  // Function to handle search
+  // handle search
   const handleSearch = async (query) => {
     if (!query) {
-      setRecipes(initialRecipes); // Reset to initial recipes if search is empty
+      setRecipes(initialRecipes); 
       return;
     }
 
@@ -87,18 +91,20 @@ function App() {
         `http://localhost:5000/api/recipes/search?q=${query}`
       );
       const data = await response.json();
-      console.log("API response:", data); // Log the API response
-      setRecipes(data); // Update recipes with search results
+      console.log("API response:", data); 
+      setRecipes(data); 
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
   };
 
+
+  //fetch recipes
   useEffect(() => {
-    handleSearch(searchQuery); // Fetch recipes when the query changes
+    handleSearch(searchQuery); 
   }, [searchQuery]);
 
-  // Function to handle recipe navigation
+  // recipe navigation
   const handleRecipeClick = (recipe) => {
     navigate("/recipedetails", { state: { recipe } }); // Navigate with recipe data
   };
@@ -125,7 +131,7 @@ function App() {
             type="text"
             placeholder="Search recipe"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+            onChange={(e) => setSearchQuery(e.target.value)} 
           />
         </div>
         {/*    <FaUser className="user-icon" /> */}
@@ -161,6 +167,7 @@ function App() {
               data-aos-offset="300"
               data-aos-delay="300"
               data-aos-easing="ease-in-sine"
+              className="recipe-deatails"
             >
               Sizzlers are a favorite with Indians, as they come with sizzler
               plates, thick steaks, rice, stir-fried vegetables, French fries,
@@ -222,7 +229,7 @@ function App() {
                   data-aos-offset="100"
                   className="btn-"
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent card click propagation
+                    e.stopPropagation(); 
                     handleRecipeClick(recipe);
                   }}
                 >

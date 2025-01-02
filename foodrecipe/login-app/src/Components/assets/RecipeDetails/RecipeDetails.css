@@ -7,7 +7,9 @@
 } */
  
 
-/* General Styling */
+/* ============================= */
+/* -------- General CSS -------- */
+/* ============================= */
 
 
 body {
@@ -27,7 +29,9 @@ body {
   min-width: 100vw;
 }
 
-/* Header Section */
+/* ============================= */
+/* -------- Header CSS -------- */
+/* ============================= */
 .recipe-header {
   display: flex;
   flex-direction: column;
@@ -112,7 +116,114 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   margin: 5px 0;
 }
 
-/* Content Section */
+
+/* ============================= */
+/* -------- Media query for Header-------- */
+/* -------- Media query for medium devices -------- */
+/* ============================= */
+@media (max-width: 992px) {
+  .popular-recipes {
+    padding: 0 3rem;
+  }
+
+  .recipe-list {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .recipe-card {
+    width: calc(33.33% - 1rem); 
+    height: 450px;
+  }
+
+  .recipe-info h3 {
+    font-size: 1rem;
+  }
+
+  .recipe-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for tablets -------- */
+/* ============================= */
+@media (max-width: 768px) {
+  .popular-recipes {
+    padding: 0 2rem;
+  }
+
+  .recipe-list {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .recipe-card {
+    width: calc(50% - 1rem); 
+    height: 400px;
+  }
+
+  .recipe-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .recipe-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for Mobile devices -------- */
+/* ============================= */
+@media (max-width: 480px) {
+  .popular-recipes {
+    padding: 0 1rem;
+
+  }
+.recipe-header{
+  height: 390px;
+}
+  .recipe-list {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .recipe-card {
+    width: 100%; 
+    height: auto;
+  }
+
+  .recipe-info h3 {
+    font-size: 0.8rem;
+  }
+
+  .recipe-title {
+    font-size: 1.2rem;
+  }
+
+  .recipe-info p {
+    font-size: 0.8rem;
+  }
+
+  .description-p {
+    font-size: 0.9rem;
+  }
+  .recipe-icons p{
+    display: flex;
+    flex-direction: column;
+  }
+  .recipe_details-header{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  } 
+}
+
+
+
+/* ============================= */
+/* -------- Content CSS -------- */
+/* ============================= */
 .recipe-content {
   padding: 0rem 5rem 0rem 5rem;
 display: flex;
@@ -162,7 +273,113 @@ gap: 2rem;
   margin-bottom: 5px;
 }
 
-/* Comments Section */
+/* ============================= */
+/* -------- Media query for Content-------- */
+/* -------- Media query for medium devices -------- */
+/* ============================= */
+@media (max-width: 992px) {
+  .recipe-content {
+    padding: 0 3rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ingredients, .directions {
+    width: 100%; 
+  }
+
+  .ingredients h3, .directions h3 {
+    font-size: 1.3rem;
+  }
+
+  .ingredients ul {
+    padding-left: 1rem;
+  }
+
+  .ingredients-list {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .ingredients-quanity {
+    text-align: left;
+  }
+
+  .directions .direction-step h4 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for tablets -------- */
+/* ============================= */
+@media (max-width: 768px) {
+  .recipe-content {
+    padding: 0 2rem;
+  }
+
+  .ingredients h3, .directions h3 {
+    font-size: 1.2rem;
+  }
+
+  .ingredients ul {
+    font-size: 0.9rem;
+  }
+
+  .ingredients-list {
+    gap: 8px;
+  }
+
+  .directions .direction-step h4 {
+    font-size: 1rem;
+  }
+
+  .directions .direction-step {
+    margin-bottom: 10px;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for Mobile devices -------- */
+/* ============================= */
+@media (max-width: 480px) {
+  .recipe-content {
+    padding: 0 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ingredients h3, .directions h3 {
+    font-size: 1rem;
+  }
+
+  .ingredients ul {
+    font-size: 0.8rem;
+    padding-left: 0.5rem;
+  }
+
+  .ingredients-list {
+    gap: 5px;
+  }
+
+  .directions .direction-step h4 {
+    font-size: 0.9rem;
+  }
+
+  .directions .direction-step {
+    margin-bottom: 8px;
+  }
+
+  .ingredients-quanity {
+    text-align: left;
+  }
+}
+
+
+
+/* ============================= */
+/* -------- Comments CSS-------- */
+/* ============================= */
 .comments {
    padding: 0rem 5rem 0rem 5rem;
 }
@@ -236,25 +453,104 @@ border-radius: 7px;
 textarea:focus{
   outline: none;
 }
-/* Responsive Design */
-@media (max-width: 768px) {
-  .recipe-header {
-    padding: 15px;
+
+/* ============================= */
+/* -------- Media query for Comments-------- */
+/* -------- Media query for medium devices -------- */
+/* ============================= */
+@media (max-width: 992px) {
+  .comments {
+    padding: 0 3rem;
   }
 
-  .recipe-content, .comments {
-    padding: 15px;
+  .comments-section {
+    flex-direction: column;
+    gap: 2rem;
   }
 
-  .recipe-header h2 {
-    font-size: 1.5rem;
+  .comment-form {
+    width: 100%;
+    padding: 1.5rem;
   }
 
-  .ingredients h3, .directions h3 {
-    font-size: 1.2rem;
+  .comment-list {
+    width: 100%; 
   }
 
-  .comments h3 {
-    font-size: 1.2rem;
+  .comment-form input, .comment-form textarea, .comment-form select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .comment-form button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .comment-list .comment-item {
+    padding: 10px;
+    font-size: 0.9rem;
   }
 }
+
+/* ============================= */
+/* -------- Media query for tablets -------- */
+/* ============================= */
+@media (max-width: 768px) {
+  .comments {
+    padding: 0 2rem;
+  }
+
+  .comment-form {
+    padding: 1rem;
+   
+  }
+
+  .comment-form input, .comment-form textarea, .comment-form select {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .comment-form button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .comment-list .comment-item {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================= */
+/* -------- Media query for Mobile devices -------- */
+/* ============================= */
+@media (max-width: 480px) {
+  .comments {
+    padding: 0 1rem;
+    padding-right: 2rem;
+  }
+
+  .comment-form {
+    padding: 0.5rem;
+ 
+  }
+
+  .comment-form input, .comment-form textarea, .comment-form select {
+    font-size: 0.7rem;
+    padding: 5px;
+  }
+
+  .comment-form button {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+
+  .comment-list .comment-item {
+    padding: 5px;
+    font-size: 0.7rem;
+  }
+}
+
+
+

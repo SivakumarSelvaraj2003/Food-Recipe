@@ -1,9 +1,11 @@
+//import express
 const express = require("express");
+//import recipe from model
 const Recipe = require("../models/Recipe");
-
+//create new router
 const router = express.Router();
 
-// Search for recipes based on the query string
+// search recipes
 router.get("/search", async (req, res) => {
   const query = req.query.q || "";
   try {
