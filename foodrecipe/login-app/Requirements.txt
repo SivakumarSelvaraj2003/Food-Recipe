@@ -1,0 +1,4 @@
+react-router-dom
+aos
+axios
+react-icons

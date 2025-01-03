@@ -98,7 +98,7 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
  background-size: 70%;
 background-position: right top; 
  background-repeat: no-repeat;
- width: 100%;
+ min-width: 90%;
    position: relative;
    margin-top: 10px;
    border-radius: 7px;
@@ -327,7 +327,7 @@ background-position: right top;
   margin-top: 2rem;
     box-sizing: border-box; 
     min-width: 100vw;
-    padding: 0rem 5rem 0rem 5rem;
+    padding: 0rem 10rem 0rem 0rem;
 }
 
 .popular-recipes h2 {
