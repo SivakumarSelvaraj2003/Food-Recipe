@@ -208,7 +208,7 @@ function App() {
               <div key={index} className="recipe-card">
                 <img
                   data-aos="fade-left"
-                  data-aos-offset="300"
+                  data-aos-offset="100"
                   src={recipe.image}
                   alt={recipe.title}
                   className="recipe-image"
